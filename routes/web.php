@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::post('dosen/{id}','ManageDosenController@postLocation')->name('dosen.location.update');
+Route::resource('dosen','ManageDosenController');
