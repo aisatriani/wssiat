@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::post('/loginmahasiswa', 'LoginSiatController@loginMahasiswa');
+
+Route::get('/dosen/{kdprodi}/prodi','DosenController@getDosenByProdi');
+Route::get('/prodi','DosenController@getProdi');
+Route::resource('/dosen','DosenController');
