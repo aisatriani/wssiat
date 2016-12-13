@@ -9,6 +9,10 @@ use phpDocumentor\Reflection\Types\Null_;
 
 class DosenController extends Controller
 {
+
+    const DOMISILI_KOTA = "KOTA GORONTALO";
+    const DOMISILI_BONE = "BONE BOLANGO";
+    const DOMISILI_KAB = "KAB. GORONTALO";
     /**
      * Display a listing of the resource.
      *
@@ -62,11 +66,13 @@ class DosenController extends Controller
         $response = Api::getService('getalldosen',$param);
         $dosen = $response['data'][0]['DOSEN'];
 
+        $res = [];
         for ($x = 0; $x < count($dosen); $x++){
             $lokasi = LokasiDosen::where('nidn',$dosen[$x]['NIDN'])->first();
             if($lokasi){
                 $dosen[$x]['LATITUDE'] = $lokasi->latitude;
                 $dosen[$x]['LONGITUDE'] = $lokasi->longitude;
+                $res[] = $dosen[$x];
             }else{
                 $dosen[$x]['LATITUDE'] = null;
                 $dosen[$x]['LONGITUDE'] = null;
@@ -74,8 +80,55 @@ class DosenController extends Controller
 
         }
 
-        return $dosen;
+        return $res;
     }
+
+    public function getDosenByDomisili($domisili)
+    {
+        $id = 1;
+        $param['kodefak'] = '05';
+        //$param['kodejur'] = '57401';
+        $response = Api::getService('getalldosen',$param);
+        $dosen = [];
+        for($i = 0; $i < count($response['data']); $i++){
+            for($j = 0; $j < count($response['data'][$i]['DOSEN']); $j++){
+                $dosen[] = $response['data'][$i]['DOSEN'][$j];
+
+            }
+        }
+
+        $res = [];
+        for ($x = 0; $x < count($dosen); $x++){
+            $lokasi = LokasiDosen::where('nidn',$dosen[$x]['NIDN'])
+                ->where('kabkot',$domisili)
+                ->first();
+
+            if($lokasi){
+                $dosen[$x]['LATITUDE'] = $lokasi->latitude;
+                $dosen[$x]['LONGITUDE'] = $lokasi->longitude;
+                $dosen[$x]['DOMISILI'] = $lokasi->kabkot;
+                $res[] = $dosen[$x];
+            }else{
+                $dosen[$x]['LATITUDE'] = 0.0;
+                $dosen[$x]['LONGITUDE'] = 0.0;
+                $dosen[$x]['DOMISILI'] = "";
+            }
+
+        }
+
+
+
+//        for ($z = 0; $z < count($dosen); $z++){
+//
+//            if(!empty($dosen[$z]['DOMISILI'])){
+//                $res[] = $dosen[$z];
+//            }
+//        }
+
+        return $res;
+    }
+
+
 
 
     /**

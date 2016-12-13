@@ -19,6 +19,7 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/loginmahasiswa', 'LoginSiatController@loginMahasiswa');
 
+Route::get('/dosen/{domisili}/domisili','DosenController@getDosenByDomisili');
 Route::get('/dosen/{kdprodi}/prodi','DosenController@getDosenByProdi');
 Route::get('/prodi','DosenController@getProdi');
 Route::resource('/dosen','DosenController');
