@@ -16,4 +16,14 @@ class LoginSiatController extends Controller
 
         return $siat;
      }
+
+    public function loginDosen(Request $request)
+    {
+        $param['nidn'] = $request->input('nidn');
+        $param['pwd'] = $request->input('pwd');
+
+        $siat = Api::getService('login_dosen',$param);
+
+        return $siat;
+    }
 }
