@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Api;
 use App\LokasiDosen;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Null_;
 
 class DosenController extends Controller
 {
@@ -115,15 +114,6 @@ class DosenController extends Controller
             }
 
         }
-
-
-
-//        for ($z = 0; $z < count($dosen); $z++){
-//
-//            if(!empty($dosen[$z]['DOMISILI'])){
-//                $res[] = $dosen[$z];
-//            }
-//        }
 
         return $res;
     }

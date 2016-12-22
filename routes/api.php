@@ -18,8 +18,14 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::post('/loginmahasiswa', 'LoginSiatController@loginMahasiswa');
+Route::post('/logindosen', 'LoginSiatController@loginDosen');
 
 Route::get('/dosen/{domisili}/domisili','DosenController@getDosenByDomisili');
 Route::get('/dosen/{kdprodi}/prodi','DosenController@getDosenByProdi');
 Route::get('/prodi','DosenController@getProdi');
 Route::resource('/dosen','DosenController');
+
+Route::get('/krs/{tahun}/{semester}/{nim}/all','KrsController@getKrs')->name('api.krs');
+Route::get('/mahasiswa/{nim}','KrsController@getMahasiswa');
+
+Route::get('dump','DumpController@storeAllData');

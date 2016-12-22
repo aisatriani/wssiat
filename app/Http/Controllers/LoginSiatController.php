@@ -12,9 +12,16 @@ class LoginSiatController extends Controller
         $param['nim'] = $request->input('nim');
         $param['pwd'] = $request->input('pwd');
 
-        $siat = Api::getService('login_mahasiswa',$param);
+        $response = Api::getService('login_mahasiswa',$param);
 
-        return $siat;
+        $dosenpa = $response['data']['DOSENPA'];
+
+        foreach ($dosenpa as $k=>$v){
+            $response['data']['DOSENPA']['NIDN'] = $k;
+            $response['data']['DOSENPA']['NAMA'] = $v;
+        }
+
+        return $response;
      }
 
     public function loginDosen(Request $request)
@@ -22,8 +29,7 @@ class LoginSiatController extends Controller
         $param['nidn'] = $request->input('nidn');
         $param['pwd'] = $request->input('pwd');
 
-        $siat = Api::getService('login_dosen',$param);
-
+        $siat = Api::getService('getlogindosen',$param);
         return $siat;
     }
 }

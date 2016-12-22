@@ -62,7 +62,8 @@ class ManageDosenController extends Controller
 
         $response = Api::getService('getalldosen',$param);
         $data = $response['data'][0]['DOSEN'];
-        return view('dosen.show', compact('data','num'));
+        $domisili = $this->getDomisili();
+        return view('dosen.show', compact('data','num','domisili'));
     }
 
     public function postLocation(Request $request, $id)
@@ -111,5 +112,15 @@ class ManageDosenController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getDomisili()
+    {
+        return [
+            '' => '-- Pilih Domisili',
+            'KOTA GORONTALO' => 'KOTA GORONTALO',
+            'KAB. GORONTALO' => 'KAB. GORONTALO',
+            'BONE BOLANGO' => 'BONE BOLANGO'
+        ];
     }
 }

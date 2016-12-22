@@ -42,7 +42,8 @@
             <td>{{ $dosen['NAMA'] }}</td>
             <td><input type="text" name="latitude" VALUE="{{  ($res = \App\LokasiDosen::where('nidn',$dosen['NIDN'])->first() ) ? $res->latitude : '' }}"></td>
             <td><input type="text" name="longitude" VALUE="{{  ($res = \App\LokasiDosen::where('nidn',$dosen['NIDN'])->first() ) ? $res->longitude : '' }}"></td>
-            <td><select name="kabkot">
+            <td>
+                <select name="kabkot">
                     <option value="KOTA GORONTALO">KOTA GORONTALO</option>
                     <option value="KAB. GORONTALO">KAB. GORONTALO</option>
                     <option value="BONE BOLANGO">BONE BOLANGO</option>
@@ -50,6 +51,7 @@
                     <option value="POHUWATO">POHUWATO</option>
                     <option value="GORONTALO UTARA">GORONTALO UTARA</option>
                 </select></td>
+
             <td>
 
                     <button type="submit" class="btn btn-info">SIMPAN</button>
