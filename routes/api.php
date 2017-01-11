@@ -25,6 +25,10 @@ Route::get('/dosen/{kdprodi}/prodi','DosenController@getDosenByProdi');
 Route::get('/prodi','DosenController@getProdi');
 Route::resource('/dosen','DosenController');
 
+Route::get('lokasi','UpdateLokasiController@getActiveLokasiDosen');
+Route::post('lokasi','UpdateLokasiController@postUpdateLokasi');
+
+
 Route::get('/krs/{tahun}/{semester}/{nim}/all','KrsController@getKrs')->name('api.krs');
 Route::get('/mahasiswa/{nim}','KrsController@getMahasiswa');
 
