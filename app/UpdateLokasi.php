@@ -10,6 +10,7 @@ class UpdateLokasi extends Model
     public $primaryKey = 'nidn';
     protected $fillable = [
         'nidn',
+        'nama',
         'latitude',
         'longitude',
         'active',
