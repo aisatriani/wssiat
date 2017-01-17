@@ -24,7 +24,6 @@ class ManageDosenController extends Controller
         return view('dosen.index', compact('response','id'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      *

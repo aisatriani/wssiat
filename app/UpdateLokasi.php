@@ -16,4 +16,6 @@ class UpdateLokasi extends Model
         'active',
     ];
 
+    protected $casts = ['nidn' => 'string'];
+
 }
