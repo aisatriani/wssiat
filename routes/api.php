@@ -30,6 +30,7 @@ Route::post('lokasi','UpdateLokasiController@postUpdateLokasi');
 
 
 Route::get('/krs/{tahun}/{semester}/{nim}/all','KrsController@getKrs')->name('api.krs');
+Route::get('/absensi','AbsensiController@getAbsensi');
 Route::get('/mahasiswa/{nim}','KrsController@getMahasiswa');
 
 Route::get('dump','DumpController@storeAllData');
