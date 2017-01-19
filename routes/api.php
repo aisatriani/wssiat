@@ -33,4 +33,6 @@ Route::get('/krs/{tahun}/{semester}/{nim}/all','KrsController@getKrs')->name('ap
 Route::get('/absensi','AbsensiController@getAbsensi');
 Route::get('/mahasiswa/{nim}','KrsController@getMahasiswa');
 
+Route::get('/jadwal/{nim}','JadwalController@getJadwal');
+
 Route::get('dump','DumpController@storeAllData');
