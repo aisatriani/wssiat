@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index');
+
+Route::get('login','LoginAppController@index');
+Route::post('login','LoginAppController@login');
+Route::get('logout','LoginAppController@logout');
 
 Route::post('dosen/{id}','ManageDosenController@postLocation')->name('dosen.location.update');
 Route::resource('dosen','ManageDosenController');
-Route::resource('krs','DemoKrsController@index');
+Route::get('filterkrs',"DemoKrsController@filterKrs");
+Route::get('krs','DemoKrsController@index');
+route::post('krs','DemoKrsController@storeKrs');

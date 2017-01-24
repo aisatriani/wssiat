@@ -23,11 +23,24 @@
 <br>
 <span>SEMESTER {{ $_GET['semester'] }}</span>
 <br>
+<span>NIM {{ session('nim') }}</span>
+<br>
+<span>PA/NIDN {{ session('pa','undefined') }}</span>
+<br>
 <br>
 <br>
 
 <div class="table-responsive">
-    <table class="table table-striped table-hover table-bordered">
+    <form action="" method="post">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="pull-right" style="padding: 10px">
+                <button type="submit" class="btn btn-default">SIMPAN</button>
+            </div>
+        </div>
+
+
+        <table class="table table-striped table-hover table-bordered">
         <thead>
         <tr>
             <th>#</th>
@@ -39,14 +52,15 @@
         </tr>
         </thead>
         <tbody>
+
         @foreach($response['data'] as $data)
             @foreach($data['MAKUL'] as $mk)
         <tr>
             <td>{{ $id }}</td>
             <td>{{ $mk['KODEMAKUL'] }}</td>
             <td>{{ $mk['NAMAMAKUL'] }}</td>
-            <td>{{ $mk['SMT'] }}</td>
-            <td><input type="checkbox"></td>
+            <td>{{ key($mk['SKS']) }}</td>
+            <td><input name="kodemakul[]" type="checkbox" value="{{ $mk['KODEMAKUL'] }}"></td>
 
 
         </tr>
@@ -59,6 +73,17 @@
         </tbody>
     </table>
 
+
+        <div class="row">
+            <div class="pull-right" style="padding: 10px">
+                <button type="submit" class="btn btn-default">SIMPAN</button>
+            </div>
+        </div>
+
+
+
+
+    </form>
 </div>
 
 @endsection
