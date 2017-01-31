@@ -21,4 +21,7 @@ Route::post('dosen/{id}','ManageDosenController@postLocation')->name('dosen.loca
 Route::resource('dosen','ManageDosenController');
 Route::get('filterkrs',"DemoKrsController@filterKrs");
 Route::get('krs','DemoKrsController@index');
-route::post('krs','DemoKrsController@storeKrs');
+Route::post('krs','DemoKrsController@storeKrs');
+
+Route::get('approve','ApprovalKrsController@index');
+

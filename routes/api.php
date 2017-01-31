@@ -36,3 +36,7 @@ Route::get('/mahasiswa/{nim}','KrsController@getMahasiswa');
 Route::get('/jadwal/{nim}','JadwalController@getJadwal');
 
 Route::get('dump','DumpController@storeAllData');
+
+Route::group(['prefix'=>'demo'], function (){
+   Route::get('krs','ApiKrsController@getKrs');
+});

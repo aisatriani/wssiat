@@ -25,18 +25,43 @@ class LoginAppController extends Controller
 
         $input = $request->all();
 
-        $param['nim'] = $request->input('username');
-        $param['pwd'] = $request->input('password');
+        if($request->input('jenis_user') == 'mahasiswa'){
 
-        $response = Api::getService('login_mahasiswa',$param);
+            $param['nim'] = $request->input('username');
+            $param['pwd'] = $request->input('password');
 
-        if($response['err_no'] > 0){
-            return redirect(url('login'))->withErrors(['error'=>'Username or password tidak cocok']);
+            $response = Api::getService('login_mahasiswa',$param);
+
+            if($response['err_no'] > 0){
+                return redirect(url('login'))->withErrors(['error'=>'Username or password tidak cocok']);
+            }
+
+            $request->session()->put('login', true);
+            $request->session()->put('jenis_user', 'mahasiswa');
+            $request->session()->put('nim', $param['nim']);
+            $request->session()->put('pa', key($response['data']['DOSENPA']));
+
         }
 
-        $request->session()->put('login', true);
-        $request->session()->put('nim', $param['nim']);
-        $request->session()->put('pa', key($response['data']['DOSENPA']));
+        if($request->input('jenis_user') == 'dosen'){
+
+            $param['nidn'] = $request->input('username');
+            $param['pwd'] = $request->input('password');
+
+            $response = Api::getService('getlogindosen',$param);
+
+            if($response['err_no'] > 0){
+                return redirect(url('login'))->withErrors(['error'=>'Username or password tidak cocok']);
+            }
+
+            $request->session()->put('login', true);
+            $request->session()->put('nidn', $param['nidn']);
+            $request->session()->put('jenis_user', 'dosen');
+            //$request->session()->put('pa', key($response['data']['DOSENPA']));
+
+        }
+
+
 
         return redirect(url('/'));
 

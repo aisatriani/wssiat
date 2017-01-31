@@ -180,6 +180,8 @@ return [
 
         Orangehill\Iseed\IseedServiceProvider::class,
 
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
     ],
 
     /*

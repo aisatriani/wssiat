@@ -10,6 +10,10 @@ class KontrakKrs extends Model
     protected $fillable = [
         'nim',
         'kodemakul',
-        'pa'
+        'namamakul',
+        'pa',
+        'setujui',
+        'tahun',
+        'semester'
     ];
 }
