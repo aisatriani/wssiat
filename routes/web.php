@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::post('dosen/{id}','ManageDosenController@postLocation')->name('dosen.location.update');
 Route::resource('dosen','ManageDosenController');
 Route::resource('krs','DemoKrsController@index');
+Route::get('lokasidosen','UpdateLokasiController@index');
+Route::delete('lokasidosen/{id}','UpdateLokasiController@destroy');

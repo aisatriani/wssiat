@@ -6,6 +6,8 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-param" content="_token" />
     <link rel="stylesheet" href="{!! url('templatemo') !!}/css/templatemo_main.css">
     <!--
     Dashboard Template

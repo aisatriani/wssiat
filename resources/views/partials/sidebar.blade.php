@@ -9,7 +9,7 @@
         <li class="active"><a href="#"><i class="fa fa-home"></i>Dashboard</a></li>
 
         <li><a href="{{ url(route('dosen.index')) }}"><i class="fa fa-cubes"></i>Manage Dosen</a></li>
-        {{--<li><a href="{{ url(route('dosen.active')) }}"><i class="fa fa-cubes"></i>Lokasi Dosen</a></li>--}}
+        <li><a href="{{ url('lokasidosen') }}"><i class="fa fa-cubes"></i>Lokasi Dosen</a></li>
         <li><a href=""><i class="fa fa-map-marker"></i>Manage Absensi</a></li>
         <li><a href=""><i class="fa fa-users"></i>Manage KRS</a></li>
         <li><a href=""><i class="fa fa-cog"></i>Preferences</a></li>

@@ -41,6 +41,7 @@
 <script src="{!! url('templatemo') !!}/js/bootstrap.min.js"></script>
 <script src="{!! url('templatemo') !!}/js/Chart.min.js"></script>
 <script src="{!! url('templatemo') !!}/js/templatemo_script.js"></script>
+<script src="{!! url('js') !!}/rails.js"></script>
 <script type="text/javascript">
     // Line chart
     var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
