@@ -40,6 +40,8 @@ class DumpController extends Controller
                 $mahasiswa->nim = $maha['NIM'];
                 $mahasiswa->nama = $maha['NAMA'];
                 $mahasiswa->kelas = $maha['KELAS'];
+                $mahasiswa->angkatan = $maha['ANGKATAN'];
+                $mahasiswa->status = $maha['STATUS'];
                 $mahasiswa->kodeprodi = $data['KODEPRODI'];
 
                 if(!empty($maha['DOSENPA']))

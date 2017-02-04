@@ -64,4 +64,12 @@ class Api
         return 'function coba';
     }
 
+    public static function getNamaMhs($nim)
+    {
+        $param['nim'] = $nim;
+        $res = Api::getService('cari_mahasiswa',$param);
+
+        return $res['data']['NAMA'];
+    }
+
 }

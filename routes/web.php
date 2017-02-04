@@ -24,4 +24,6 @@ Route::get('krs','DemoKrsController@index');
 Route::post('krs','DemoKrsController@storeKrs');
 
 Route::get('approve','ApprovalKrsController@index');
+Route::get('approve/{nim}','ApprovalKrsController@show');
+Route::post('approve/{nim}','ApprovalKrsController@setujui');
 

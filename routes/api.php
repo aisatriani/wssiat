@@ -38,5 +38,7 @@ Route::get('/jadwal/{nim}','JadwalController@getJadwal');
 Route::get('dump','DumpController@storeAllData');
 
 Route::group(['prefix'=>'demo'], function (){
-   Route::get('krs','ApiKrsController@getKrs');
+    Route::get('krs','ApiKrsController@getKrs');
+    Route::get('bimbingan/{nidn}','ApiKrsController@getMahasiswaBimbingan');
+    Route::get('kontrak/{nidn}','ApiKrsController@getMahasiswaKontrak');
 });
