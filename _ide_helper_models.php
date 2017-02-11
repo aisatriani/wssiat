@@ -130,7 +130,7 @@ namespace App{
  * @property string $kodeprodi
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property string $angakatan
+ * @property string $angkatan
  * @property string $status
  * @property-read \App\Prodi $prodi
  * @method static \Illuminate\Database\Query\Builder|\App\Mahasiswa whereId($value)
@@ -142,7 +142,7 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\Mahasiswa whereKodeprodi($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Mahasiswa whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Mahasiswa whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Mahasiswa whereAngakatan($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Mahasiswa whereAngkatan($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Mahasiswa whereStatus($value)
  */
 	class Mahasiswa extends \Eloquent {}

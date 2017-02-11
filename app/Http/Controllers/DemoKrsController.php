@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 use App\Api;
 use App\KontrakKrs;
 use Illuminate\Http\Request;
+use LaravelFCM\Facades\FCM;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use LaravelFCM\Message\Topics;
 
 class DemoKrsController extends Controller
 {
 
     public function index(Request $request)
     {
-        $param['tahun'] = $request->input('tahun','');
+        $param['tahun'] = '2016';
         $param['semester'] = $request->input('semester','');
         $param['kodeprodi'] = $request->input('kodeprodi','');
         $response = Api::getService('getallkurikulum',$param);
         $id = 1;
 
-        $kontrak = KontrakKrs::where('nim',session('nim'))->where('tahun',$param['tahun'])->where('semester',$param['semester'])->get();
+        $kontrak = KontrakKrs::where('nim',session('nim'))->where('tahun',$request->input('tahun',''))->where('semester',$param['semester'])->get();
 
 
         return view('krs.index',compact('response','id','kontrak'));
@@ -31,8 +35,6 @@ class DemoKrsController extends Controller
     public function storeKrs(Request $request)
     {
         $input = $request->all();
-
-        //dd($input);
 
         foreach ($input['kodemakul'] as $kdmkl){
 
@@ -50,10 +52,34 @@ class DemoKrsController extends Controller
             if(!$cek){
                 $kontrak->save();
             }
-
         }
 
+        $this->sendNotification(session('pa'), session('nim'), $kontrak);
+
         return redirect(url('krs').'?tahun='.$input['tahun'].'&semester='.$input['semester'].'&kodeprodi='.$input['kodeprodi'].'');
+    }
+
+    public function sendNotification($nidn, $nim, $objek)
+    {
+        $notificationBuilder = new PayloadNotificationBuilder('KRS NOTIFIER');
+        $notificationBuilder->setBody($nim.' sedang mengontrak kuliah')
+            ->setSound('default');
+
+        $notification = $notificationBuilder->build();
+
+        $dataBuilder = new PayloadDataBuilder();
+        $dataBuilder->addData($objek->toArray());
+        $dataBuilder->addData(['type'=>'kontrak_krs']);
+        $data = $dataBuilder->build();
+
+        $topic = new Topics();
+        $topic->topic($nidn);
+
+        $topicResponse = \FCM::sendToTopic($topic, null, $notification, $data);
+
+        $topicResponse->isSuccess();
+        $topicResponse->shouldRetry();
+        $topicResponse->error();
     }
 
 

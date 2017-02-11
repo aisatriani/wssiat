@@ -34,7 +34,11 @@
             			<td>{{ $no }}</td>
             			<td>{{ $k->kodemakul }}</td>
             			<td>{{ $k->namamakul }}</td>
-            			<td><input type="checkbox" {{ ($k->setujui == 1) ? 'checked disabled' : '' }} name="setujui[{{$k->nim}}][{{$k->kodemakul}}]" value="1"/></td>
+            			<td>
+
+							{{ Form::select("setujui[$k->nim][$k->kodemakul]",$arrSetujui,$k->setujui, ($k->setujui == 1) ? ['disabled'] : []) }}
+
+						</td>
             		</tr>
 					<?php $no++ ?>
 					@endforeach
@@ -53,3 +57,16 @@
 
 
 @endsection
+
+@push('js')
+<script>
+
+	$(function(){
+
+
+
+
+	});
+
+</script>
+@endpush

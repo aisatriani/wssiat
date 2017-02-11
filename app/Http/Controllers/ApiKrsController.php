@@ -44,4 +44,32 @@ class ApiKrsController extends Controller
 
         return $kontrak;
     }
+
+    public function getMataKuliahKontrak($nim, $tahun, $semester)
+    {
+        $kontrak = KontrakKrs::where('nim',$nim)->where('tahun',$tahun)->where('semester',$semester)->get();
+        return $kontrak;
+
+    }
+
+    public function getStatusKrs($tahun, $semester, $nim, $kodmakul)
+    {
+        $param['tahun'] = $tahun;
+        $param['semester'] = $semester;
+        $param['nim'] = $nim;
+        $param['idmakul'] = $kodmakul;
+
+        $response = Api::getService('getstatuskrs',$param);
+        return $response;
+    }
+
+    public function getAllKrs($tahun, $semester, $nim)
+    {
+        $param['tahun'] = $tahun;
+        $param['semester'] = $semester;
+        $param['nim'] = $nim;
+
+        $response = Api::getService('cari_krs',$param);
+        return $response;
+    }
 }
