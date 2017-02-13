@@ -14,7 +14,7 @@ class ApprovalKrsController extends Controller
     public function index()
     {
         $kontrak = KontrakKrs::wherePa(session('nidn'))
-                ->groupBy(['id','nim'])->get();
+                ->groupBy(['nim'])->get();
 
         return view('approval.index',compact('kontrak'));
 
